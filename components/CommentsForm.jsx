@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { submitComment } from "../services";
+import { submitComment, publishComment } from "../services";
 
 const CommentsForm = ({ slug }) => {
   const [error, setError] = useState(false);
@@ -46,6 +46,9 @@ const CommentsForm = ({ slug }) => {
       setTimeout(() => {
         setShowSuccessMessage(false);
       }, 3000);
+      publishComment(res.createComment.id).then(() => {
+        console.log("Published Comment");
+      });
     });
   };
 
